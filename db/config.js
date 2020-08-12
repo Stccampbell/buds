@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 const DB_NAME = process.env.DB_NAME || "buds";
 
 const options = {
@@ -8,7 +8,7 @@ const options = {
 };
 
 const pgp = require('pg-promise')(options);
-module.exports = prgp({
+module.exports = pgp({
     database: DB_NAME,
     port: 5432,
     host: 'localhost',
