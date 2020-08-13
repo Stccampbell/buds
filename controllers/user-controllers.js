@@ -1,4 +1,4 @@
-// const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const User = require('../models/user.js');
 
 const usersController = {
@@ -31,3 +31,4 @@ const usersController = {
     }
 }
 
+module.exports = usersController

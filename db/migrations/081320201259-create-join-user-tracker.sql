@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS tracker(
+    id SERIAL PRIMARY KEY,
+    log VARCHAR
+)

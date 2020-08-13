@@ -1,6 +1,6 @@
 const db = require('../db/config');
 
-class USER {
+class User {
     constructor({ id, username, email, password_digest }) {
         this.id = id;
         this.username = username;
@@ -16,10 +16,10 @@ class USER {
     save() {
         return db
             .one(`
-            INSER INTO users
+            INSERT INTO users
             (username, email, password_digest)
             VALUES
-            ($/username/), $/email/, $password_digest/)
+            ($/username/, $/email/, $/password_digest/)
             RETURNING *
             `, this)
             .then((savedUser) => Object.assign(this, savedUser));
