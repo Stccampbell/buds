@@ -2,7 +2,7 @@ const authRouter = require('express').Router();
 
 const authHelpers = require('../services/auth/auth-helpers.js');
 const passport = require('../services/auth/local');
-authRouter.get('/', (req, res) => {
+authRouter.get('/test', (req, res) => {
     res.json('hello')
 });
 
