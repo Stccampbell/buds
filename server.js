@@ -35,16 +35,16 @@ app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 });
 
-// app.get('/plants', (req, res) => {
-//     console.log('Hello World')
-// });
+app.get('/auth', (req, res) => {
+    res.json('hello')
+});
 
 app.get('/', (req, res) => {
     res.json('hello')
 })
 
 app.use('/plants', userPlantsRouter);
-app.use('/auth', authRouter);
+// app.use('/auth', authRouter);
 app.use('/user', userRouter);
 
 
