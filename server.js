@@ -6,8 +6,9 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
 
-const userRouter = require('./routes/user-router.js');
-const authRouter = require('./routes/auth-router.js');
+const userRouter = require('./routes/user-router');
+const authRouter = require('./routes/auth-router');
+const userPlantsRouter = require('./routes/user-plants-router');
 
 const app = express();
 require('dotenv').config();
@@ -34,19 +35,18 @@ app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 });
 
+// app.get('/plants', (req, res) => {
+//     console.log('Hello World')
+// });
+
 app.get('/', (req, res) => {
-    console.log('Hello World')
-});
+    res.json('hello')
+})
 
-// app.get('/', (req, res) => {
-//     res.render('index', {
-//         appName: 'buds',
-//     })
-// })
-
-
+app.use('/plants', userPlantsRouter);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
+
 
 app.use('*', (req, res) => {
     res.status(404).send({

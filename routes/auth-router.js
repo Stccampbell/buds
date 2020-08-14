@@ -11,8 +11,8 @@ authRouter.get('/login', authHelpers.loginRedirect, (req, res) => {
 //if fail they go to /auth/login
 authRouter.post('/login',
     passport.authenticate('local', {
-        successRedirect: '/user',
-        faliureRedirect: '/auth/login',
+        successRedirect: '/plants',
+        faliureRedirect: 'auth/login',
         faliureFlash: true,
     })
 );
