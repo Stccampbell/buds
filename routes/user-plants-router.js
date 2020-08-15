@@ -25,6 +25,6 @@ userPlantsRouter.get('/', userPlantsController.index);
 
 // userPlantsRouter.put('/:id', userPlantsController.update);
 
-// userPlantsRouter.delete('/:id', userPlantsController.delete);
+userPlantsRouter.delete('/:id', userPlantsController.delete);
 
 module.exports = userPlantsRouter;

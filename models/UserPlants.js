@@ -33,7 +33,7 @@ class UserPlants {
     // }
 
     static getById(id) {
-        return db   .oneOrNine('SELECT * FROM animals WHERE id = $1', id)
+        return db   .oneOrNone('SELECT * FROM user_plants WHERE id = $1', id)
         .then((plant) => {
             if(plant) return new this(plant);
             throw new Error('Plant not found');

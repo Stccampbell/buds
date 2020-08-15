@@ -32,7 +32,7 @@ const userPlantsController = {
             .catch(next);
     },
 
-    // create(req, res){  //why no next here? maybe because it redirects upon completion
+    // create(req, res, next){  //why no next here? maybe because it redirects upon completion
     //     new UserPlants({
     //         apiReference = req.body.apiReference,
     //         plantName = req.body.name
@@ -44,24 +44,24 @@ const userPlantsController = {
     //     .catch(next);
     // },
 
-    update(req, res,){
+    update(req, res, next){
         UserPlants.getById(req.params.id)
             .then((plant) => {
                 return plant.update(req.body);
             })
-            // .then((updatedPlant) => {
-            //     res.redirect(`/something/${updatedPlant.id}`);
-            // }) No redirect page set up
+            .then((updatedPlant) => {
+                res.redirect(`/plants/${updatedPlant.id}`);
+            })
             .catch(next);
     },
 
-    delete(req, res,){
+    delete(req, res, next){
         UserPlants.getById(req.params.id)
             .then((plant) => {
                 return plant.delete();
             })
             .then(() =>{
-                res.redirect('/something');
+                res.redirect('/plants');
             })
             .catch(next);
     },

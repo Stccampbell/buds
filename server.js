@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
 
+const authHelpers = require('./services/auth/auth-helpers.js');
+
 const userRouter = require('./routes/user-router');
 const authRouter = require('./routes/auth-router');
 const userPlantsRouter = require('./routes/user-plants-router');
@@ -43,7 +45,7 @@ app.get('/', (req, res) => {
     res.json('hello')
 })
 
-app.use('/plants', userPlantsRouter);
+app.use('/plants', authHelpers.loginRequired, userPlantsRouter);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 
