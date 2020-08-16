@@ -2,24 +2,25 @@
 
 
 
-<div class="container">
-    <% for (let plant of data.plants) { %>
-        <div class="plant-container">
-            <h3><%= plant.plantName %></h3>
-            <a href="/plants/<%= plant.id%>">View</a>
-            <form method="POST" action="/plants/<%= plant.id %>?_method=DELETE">
-                <input type="submit" value="Remove this plant">
-            </form>
+<div class="indexContainer">
+    <% for (let plant of plants.plants) { %>
+        <div class="plantContainer">
+            <div class="front box">
+                <h3><%= plant.plantName %></h3>
+                <a href="/plants/<%= plant.id%>">Checkout</a>
+            </div>
+            <div class="middle box">
+                <h3>Notes</h3>
+                <p>temporary</p>
+            </div>
+            <div class="back box">
+                <form method="POST" action="/plants/<%= plant.id %>?_method=DELETE">
+                    <input type="submit" value="Remove this plant">
+                </form>
+            </div>
         </div>
     <% } %>
 </div>
-
-
-
-
-
-
-
 
 
 

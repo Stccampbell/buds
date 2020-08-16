@@ -1,0 +1,14 @@
+<% for (let week of week.week) { %>
+            <% if (plant.id === week.user_plant_id){ %>
+                <div class="weekTracker">
+                    <p>week.dayWatered</p>
+                </div>
+            <% } %>
+            <% } %>
+
+
+<div class='container'>
+      <h3><%= plant.plantName %></h3>
+      <p><%= tracker.dayFed %></p>
+      <a href='/plants/'>See all animals</a>
+    </div>

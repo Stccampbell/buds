@@ -1,27 +1,19 @@
 const UserPlants = require('../models/UserPlants');
+const trackerController = require('./tracker-controller')
 
 const userPlantsController = {
     index(req, res, next) {
         UserPlants.getAll(req.user.id)
             .then((plants) => {
-                res.render('plants/index', {
-                    message: 'ok',
-                    data: { plants },
-                });
+                // res.render('plants/index', {
+                //     message: 'ok',
+                //     data: { plants },
+                // });
+                res.locals.plants = { plants };
+                next();
             })
             .catch(next)
     },
-
-    // index(req, res, next) {
-    //     UserPlants.getAll()
-    //         .then((plants) => {
-    //             res.render('plants/index', {
-    //                 message: 'ok',
-    //                 data: { plants },
-    //             });
-    //         })
-    //         .catch(next)
-    // },
 
     show(req, res, next) {
         UserPlants.getById(req.params.id)
@@ -65,6 +57,26 @@ const userPlantsController = {
             })
             .catch(next);
     },
+
+    //tracker
+
+    // indexTracker(req, res, next) {
+    //     UserPlants.getById(req.user.id)
+    //         .then((userPlant) =>{
+    //             userPlant.getWeekly()
+    //         })
+    //         .then((week) => {
+    //             // res.render('plants/index', {
+    //             //     message: 'ok',
+    //             //     data: { plants },
+    //             // });
+
+    //             res.locals.week = { week };
+    //             next();
+    //         })
+    //         .catch(next)
+    // },
+    
 }
 
 module.exports = userPlantsController
