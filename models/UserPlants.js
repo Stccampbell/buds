@@ -1,4 +1,5 @@
 const db = require('../db/config');
+const Tracker = require('./Tracker')
 
 class UserPlants {
     constructor(plant) {
@@ -33,7 +34,8 @@ class UserPlants {
     // }
 
     static getById(id) {
-        return db   .oneOrNone('SELECT * FROM user_plants WHERE id = $1', id)
+        return db
+        .oneOrNone('SELECT * FROM user_plants WHERE id = $1', id)
         .then((plant) => {
             if(plant) return new this(plant);
             throw new Error('Plant not found');
@@ -73,6 +75,18 @@ class UserPlants {
     delete() {
         return db.oneOrNone('DELETE FROM user_plants WHERE id = $1', this.id)
     }
+
+    // tracker
+
+    //     getWeekly() {
+    //     return db.manyOrNone(`
+    //     SELECT * FROM tracker
+    //     WHERE user_plant_id = $1 AND day_watered > (NOW() - INTERVAL '7 days')
+    //     `, this.id)
+    //     .then((week) => {
+    //         return week.map((week) => Tracker(week))
+    //     })
+    // }
 }
 
 module.exports = UserPlants

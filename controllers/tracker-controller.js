@@ -5,64 +5,29 @@ const trackerController = {
     week(req, res, next){
         Tracker.getByWeek(req.params.id)
             .then((week) => {
-                // res.render('', {
-                //     message: 'ok',
-                //     data: { week },
-                // });
                 res.locals.pastWeek = week;
                 next();
             })
             .catch(next);
     },
 
+    lastWatered(req, res, next){
+        Tracker.getMostRecent(req.params.id)
+            .then((last) => {
+                res.locals.lastWatered = last;
+                next();
+            })
+            .catch(next);
+    },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // month(req, res, next){
-    //     UserPlants.getById(req.params.id)
-    //         .then((plant) => {
-    //             Tracker.getByMonth(plant.id);
-    //         })
-    //         .then((month) => {
-    //             // res.render('', {
-    //             //     message: 'ok',
-    //             //     data: { month },
-    //             // });
-    //             res.locals.month = { month }
-    //         })
-    //         .catch(next);
-    // },
-
-//     today(req, res, next){
-//         UserPlants.getById(req.params.id)
-//             .then((plant) => {
-//                 Tracker.getByDay(plant.id);
-//             })
-//             .then((day) => {
-//                 // res.render('', {
-//                 //     message: 'ok',
-//                 //     data: { day },
-//                 // });
-//                 res.locals.day = { day };
-//                 next();
-//             })
-//             .catch(next);
-//     },
+    month(req, res, next){
+        Tracker.getByMonth(req.params.id)
+            .then((month) => {
+                res.locals.pastMonth = month;
+                next();
+            })
+            .catch(next);
+    },
 
 // //     // create(req, res, next){
 

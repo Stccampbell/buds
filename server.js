@@ -42,7 +42,9 @@ app.listen(PORT, () => {
 // });
 
 app.get('/', (req, res) => {
-    res.json('hello')
+    res.render('index', {
+        appName:'Buds',
+    })
 })
 
 app.use('/plants', authHelpers.loginRequired, userPlantsRouter);

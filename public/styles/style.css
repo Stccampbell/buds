@@ -128,3 +128,42 @@ h1{
     font-size: 45px;
     font-family: cursive
 }
+
+.singlePlantContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 85vh;
+}
+.singlePlantInfo{
+    width: 40vh;
+}
+
+.singlePlantPhoto{
+    height: 130px;
+    width: 100px;
+}
+
+.singlePlantPhotoContainer{
+    height: 150px;
+    width: 150px;
+    margin-top: -50px;
+    border: solid grey 5px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.singlePlantName{
+    font-size: 45px;
+    margin: 10px;
+}
+.lastWatered{
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+.day{
+    font-size: 20px;
+    margin-bottom: 5px;
+}

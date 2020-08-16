@@ -1,10 +1,12 @@
-<% for (let week of week.week) { %>
-            <% if (plant.id === week.user_plant_id){ %>
-                <div class="weekTracker">
-                    <p>week.dayWatered</p>
-                </div>
-            <% } %>
-            <% } %>
+<div class='singlePlantContainer'>
+      <h2><%= plant.plantName %></h2>
+
+      <% for (let week of pastWeek) { %>
+            <div class="weekTracker">
+                <p><%= week.dayWatered %></p>
+            </div>
+        <% } %>
+    </div>
 
 
 <div class='container'>

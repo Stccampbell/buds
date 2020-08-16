@@ -18,7 +18,7 @@ authRouter.post('/login',
 
 authRouter.get('/logout', (req, res) => {
     req.logOut();
-    res.redirect('back'); //need to find back
+    res.redirect('auth/login'); //need to find back
 });
 
 module.exports = authRouter

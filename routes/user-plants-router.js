@@ -2,20 +2,40 @@ const express = require('express');
 const userPlantsRouter = express.Router();
 
 const userPlantsController = require('../controllers/user-plants-controller');
-// const usersController = require('../controllers/user-controllers.js');
+const trackerController = require('../controllers/tracker-controller');
 
-userPlantsRouter.get('/', userPlantsController.index);
-// userPlantsRouter.post('/', userPlantsController.create);
 
-// userPlantsRouter.get('/add', (req, res) => {
-//     res.render('')
-// }) might cut this
 
-// userPlantsRouter.get('/:id([0-9]+)', userPlantsController.show, (req,res) =>{
+userPlantsRouter.get('/', userPlantsController.index, (req, res) => {
+    res.render('plants', {
+        plants: res.locals.plants
+    });
+});
+
+userPlantsRouter.get('/:id([0-9]+)', userPlantsController.show, trackerController.lastWatered, (req,res) =>{
+    console.log(res.locals)
+    res.render('plants/show', {
+        plant: res.locals.plant,
+        lastWatered: res.locals.lastWatered
+    });
+});
+
+// userPlantsRouter.get('/:id([0-9]+)', userPlantsController.show, trackerController.week, (req,res) =>{
+//     console.log(res.locals)
 //     res.render('plants/show', {
-//         plant: res.locals.plant
+//         plant: res.locals.plant,
+//         pastWeek: res.locals.pastWeek
 //     });
 // });
+
+// userPlantsRouter.get('/:id([0-9]+)', userPlantsController.show, trackerController.week, (req,res) =>{
+//     res.send({
+//         plant: res.locals.plant,
+//         week: res.locals.week
+//     });
+// });
+
+// userPlantsRouter.post('/', userPlantsController.create);
 
 // userPlantsRouter.get('/:id([0-9]+)/edit', userPlantsController.show, (req, res) => {
 //     res.render('plants/edit', {
@@ -24,6 +44,13 @@ userPlantsRouter.get('/', userPlantsController.index);
 // });
 
 // userPlantsRouter.put('/:id', userPlantsController.update);
+
+// userPlantsRouter.get('/', userPlantsController.index, userPlantsController.indexTracker, (req, res) => {
+//     res.render('plants', {
+//         plants: res.locals.plants,
+//         week: res.locals.week
+//     });
+// });
 
 userPlantsRouter.delete('/:id', userPlantsController.delete);
 
