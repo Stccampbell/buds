@@ -29,9 +29,24 @@ const trackerController = {
             .catch(next);
     },
 
-// //     // create(req, res, next){
+    // create(req, res){
+    //     new Tracker({
+    //         // userPlantId: req.body.userPlantId,
+    //     })
+    //     .save(req.body.userPlantId)
+    // },
 
-// //     // },
+    create(req, res, next){
+        const userPlantId = req.body.userPlantId
+        new Tracker({
+            userPlantId: userPlantId,
+        })
+        .save(req.body.userPlantId)
+        .then(() => {
+            res.redirect(`/plants/${req.body.userPlantId}`)
+          })
+        .catch(next);
+    },
 
 //     delete(req, res, next){
 //         UserPlants.getById(req.params.id)

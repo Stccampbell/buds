@@ -75,18 +75,6 @@ class UserPlants {
     delete() {
         return db.oneOrNone('DELETE FROM user_plants WHERE id = $1', this.id)
     }
-
-    // tracker
-
-    //     getWeekly() {
-    //     return db.manyOrNone(`
-    //     SELECT * FROM tracker
-    //     WHERE user_plant_id = $1 AND day_watered > (NOW() - INTERVAL '7 days')
-    //     `, this.id)
-    //     .then((week) => {
-    //         return week.map((week) => Tracker(week))
-    //     })
-    // }
 }
 
 module.exports = UserPlants

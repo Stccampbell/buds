@@ -20,6 +20,8 @@ userPlantsRouter.get('/:id([0-9]+)', userPlantsController.show, trackerControlle
     });
 });
 
+userPlantsRouter.post('/:id([0-9]+)', trackerController.create);
+
 // userPlantsRouter.get('/:id([0-9]+)', userPlantsController.show, trackerController.week, (req,res) =>{
 //     console.log(res.locals)
 //     res.render('plants/show', {

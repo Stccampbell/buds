@@ -2,10 +2,10 @@ const db = require('../db/config');
 const UserPlants = require('./UserPlants')
 
 class Tracker {
-    constructor(tracker){
-        this.id = tracker.id || null;
-        this.userPlantId = tracker.user_plant_id;
-        this.dayWatered = tracker.day_watered;
+    constructor(params){
+        this.id = params.id || null;
+        this.userPlantId = params.user_plant_id;
+        this.dayWatered = params.day_watered || null;
     }
 
     static getByWeek(plantId){
@@ -33,27 +33,6 @@ class Tracker {
             });
     }
 
-    // static getMostRecent(plantId){
-    //     return db
-    //         .oneOrNone(`
-    //         SELECT * FROM tracker 
-    //         WHERE user_plant_id = $1 
-    //         ORDER BY day_watered 
-    //         DESC LIMIT 1
-    //         `, plantId).then((tracker) => {
-    //             return tracker.map((week) => {
-    //                 return new this(week);
-    //             });
-    //         });
-    // }
-
-
-
-
-
-
-
-
     static getByMonth(plantId) {
         return db
             .manyOrNone(`
@@ -66,17 +45,18 @@ class Tracker {
             });
     }
 
-    // save(){
-    //     return db
-    //         .one(`
-    //             INSERT INTO tracker 
-    //             (user_plant_id, day_watered)
-    //             VALUES
-    //             ($/userPlantId/, $/dayFed/)
-    //         `, this).then((tracker) => {
-    //             return Object.assign(this, tracker)
-    //         });
-    // }
+    save(userPlant){
+        return db
+            .oneOrNone(`
+                INSERT INTO tracker 
+                (user_plant_id)
+                VALUES
+                ($1)
+            `, userPlant)
+            .then((tracker) => {
+                return Object.assign(this, tracker)
+            });
+    }
 
     // delete(){
     //     return db.oneOrNone('DELETE FROM tracker WHERE id =$1', this.id)

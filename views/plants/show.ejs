@@ -5,14 +5,22 @@
             <img class="singlePlantPhoto" src="/assets/budslogo.png">
         </div>  
         <h2 class="singlePlantName"><%= plant.plantName %></h2>
-        <h3 class="lastWatered">Last Watered</h3>
-        <h4 class="day"><%= lastWatered.dayWatered %></h4>
+        <% if (lastWatered.dayWatered) { %>
+            <h3 class="lastWatered">Last Watered</h3>
+            <h4 class="day"><%= lastWatered.dayWatered %></h4>
+        <% } %>
         <p class="singlePlantInfo">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
             Odit rem asperiores vero neque, sit corrupti beatae magnam. 
             Reiciendis saepe ducimus fugit dicta rerum necessitatibus,
             rem autem earum dolorem perspiciatis cupiditate?
         </p>
+
+        <h3 class="lastWatered">Have You watered this plant today?</h3>
+        <form method='POST' action='/plants/<%= plant.id %>'>
+            <input name="userPlantId" type="hidden" value="<%= plant.id %>">
+            <input type='submit' value='I Have!' />
+        </form>
     </div>
 
 
