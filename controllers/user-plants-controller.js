@@ -1,7 +1,7 @@
 const UserPlants = require('../models/UserPlants');
-const trackerController = require('./tracker-controller')
 
 const userPlantsController = {
+    //pulls all plants for that user
     index(req, res, next) {
         UserPlants.getAll(req.user.id)
             .then((plants) => {
@@ -15,6 +15,7 @@ const userPlantsController = {
             .catch(next)
     },
 
+    //pulls a plant for that user
     show(req, res, next) {
         UserPlants.getById(req.params.id)
             .then((plant) => {
@@ -24,6 +25,7 @@ const userPlantsController = {
             .catch(next);
     },
 
+    //adds a plant to the data base
     create(req, res, next){ 
         new UserPlants({
             plantName: req.body.name,
@@ -36,6 +38,7 @@ const userPlantsController = {
         .catch(next);
     },
 
+    //updates a plant in the data base
     update(req, res, next){
         UserPlants.getById(req.params.id)
             .then((plant) => {
@@ -47,6 +50,7 @@ const userPlantsController = {
             .catch(next);
     },
 
+    //deletes a plant in the database
     delete(req, res, next){
         UserPlants.getById(req.params.id)
             .then((plant) => {
@@ -59,4 +63,5 @@ const userPlantsController = {
     },
 }
 
+//all are going to user-plants-router
 module.exports = userPlantsController

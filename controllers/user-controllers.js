@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User.js');
 
 const usersController = {
-//shows profile page
+//shows profile page not in user
     index(req,res, next) {
         res.json({
             message: 'Add a profile page',
@@ -11,7 +11,7 @@ const usersController = {
             },
         });
     },
-//creates user profile
+//creates user profile is being used
     create(req,res,next) {
         const salt = bcrypt.genSaltSync();
         const hash = bcrypt.hashSync(req.body.password, salt);

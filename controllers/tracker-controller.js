@@ -2,6 +2,7 @@ const Tracker = require('../models/Tracker');
 const UserPlants = require('../models/UserPlants');
 
 const trackerController = {
+    //pulls a week from the database not currently called in any router
     week(req, res, next){
         Tracker.getByWeek(req.params.id)
             .then((week) => {
@@ -10,7 +11,7 @@ const trackerController = {
             })
             .catch(next);
     },
-
+    //pulls the most recent watering is called in user-plants-router.js
     lastWatered(req, res, next){
         Tracker.getMostRecent(req.params.id)
             .then((last) => {
@@ -19,7 +20,7 @@ const trackerController = {
             })
             .catch(next);
     },
-
+    //pulls a month not called anywhere
     month(req, res, next){
         Tracker.getByMonth(req.params.id)
             .then((month) => {
@@ -29,13 +30,7 @@ const trackerController = {
             .catch(next);
     },
 
-    // create(req, res){
-    //     new Tracker({
-    //         // userPlantId: req.body.userPlantId,
-    //     })
-    //     .save(req.body.userPlantId)
-    // },
-
+    //adds a new log for the time it is logged in called same lastwatered
     create(req, res, next){
         const userPlantId = req.body.userPlantId
         new Tracker({
@@ -48,6 +43,7 @@ const trackerController = {
         .catch(next);
     },
 
+        //not currently in use
 //     delete(req, res, next){
 //         UserPlants.getById(req.params.id)
 //             .then((plant) => {
