@@ -2,29 +2,36 @@ const express = require('express');
 const userPlantsRouter = express.Router();
 
 const userPlantsController = require('../controllers/user-plants-controller');
-// const usersController = require('../controllers/user-controllers.js');
+const trackerController = require('../controllers/tracker-controller');
 
-userPlantsRouter.get('/', userPlantsController.index);
-// userPlantsRouter.post('/', userPlantsController.create);
 
-// userPlantsRouter.get('/add', (req, res) => {
-//     res.render('')
-// }) might cut this
+//shows all plants for auser
+userPlantsRouter.get('/', userPlantsController.index, (req, res) => {
+    res.render('plants', {
+        plants: res.locals.plants
+    });
+});
 
-// userPlantsRouter.get('/:id([0-9]+)', userPlantsController.show, (req,res) =>{
-//     res.render('plants/show', {
-//         plant: res.locals.plant
-//     });
-// });
+//shows individual plant for user and their waterings
+userPlantsRouter.get('/:id([0-9]+)', userPlantsController.show, trackerController.lastWatered, (req,res) =>{
+    console.log(res.locals)
+    res.render('plants/show', {
+        plant: res.locals.plant,
+        lastWatered: res.locals.lastWatered
+    });
+});
 
-// userPlantsRouter.get('/:id([0-9]+)/edit', userPlantsController.show, (req, res) => {
-//     res.render('plants/edit', {
-//         plant: res.locals.plant
-//     });
-// });
+//adds new watering log
+userPlantsRouter.post('/:id([0-9]+)', trackerController.create);
 
-// userPlantsRouter.put('/:id', userPlantsController.update);
 
-// userPlantsRouter.delete('/:id', userPlantsController.delete);
+//adds new plant
+userPlantsRouter.post('/', userPlantsController.create);
+
+//updates plant name
+userPlantsRouter.put('/:id', userPlantsController.update);
+
+//deletes plant
+userPlantsRouter.delete('/:id', userPlantsController.delete);
 
 module.exports = userPlantsRouter;

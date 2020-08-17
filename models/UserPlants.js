@@ -1,4 +1,5 @@
 const db = require('../db/config');
+const Tracker = require('./Tracker')
 
 class UserPlants {
     constructor(plant) {
@@ -33,22 +34,23 @@ class UserPlants {
     // }
 
     static getById(id) {
-        return db   .oneOrNine('SELECT * FROM animals WHERE id = $1', id)
+        return db
+        .oneOrNone('SELECT * FROM user_plants WHERE id = $1', id)
         .then((plant) => {
             if(plant) return new this(plant);
             throw new Error('Plant not found');
         });
     }
 
-    save() {
+    save(name, user) {
         return db
             .one(`
             INSERT INTO user_plants 
-            (api_reference, plant_name, user_id)
+            (plant_name, user_id)
             VALUES
-            ($/apiReference/, $/plantName/, $/userId/)
+            ($1, $2)
             RETURNING *
-            `, this)
+            `, [name, user])
             .then((plant) => {
                 return Object.assign(this, plant)
             });
@@ -61,7 +63,7 @@ class UserPlants {
             UPDATE user_plants SET
             api_reference = $/apiReference/,
             plant_name = $/plantName/,
-            user_id = $/user_id/
+            user_id = $/userId/
             WHERE id = $/id/
             RETURNING *
             `, this)

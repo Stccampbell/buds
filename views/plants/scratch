@@ -1,0 +1,16 @@
+<div class='singlePlantContainer'>
+      <h2><%= plant.plantName %></h2>
+
+      <% for (let week of pastWeek) { %>
+            <div class="weekTracker">
+                <p><%= week.dayWatered %></p>
+            </div>
+        <% } %>
+    </div>
+
+
+<div class='container'>
+      <h3><%= plant.plantName %></h3>
+      <p><%= tracker.dayFed %></p>
+      <a href='/plants/'>See all animals</a>
+    </div>

@@ -1,10 +1,18 @@
-<%- include('../partials/boilerplate') %>
+<%- include ('../partials/boilerplateUser') %>
 
-<div class='container'>
-    <form method='POST' action='/auth/login'>
+<div class='authContainer'>
+
+    <div class="logoContainer">
+        <img class="logo" src="/assets/budslogo.png">
+      </div>
+      <br/>
+
+    <form class='authForm' method='POST' action='/auth/login'>
         <input name='username' type='text' placeholder='username' required />
+        <br/>
         <input name='password' type='password' placeholder='password' required />
-        <input type='submit' value='Log in' />
+        <br/>
+        <input class='authButton' type='submit' value='Log in' />
     </form>
 </div>
 
