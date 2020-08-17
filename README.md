@@ -1,3 +1,6 @@
+# Deployed Heroku
+    - https://morning-fortress-64023.herokuapp.com/
+
 # buds
 This app allows the user to keep track of their individual plants and the last date they watered them. In future updates they will be able to pull information about their plant from a large api that will be more specfic on what they need for the plant. Unfortunately that was not added this time.
 
@@ -35,6 +38,7 @@ currently nothing on the site is broken unfortunately things are a little limite
 # HTTP routes
     - https://morning-fortress-64023.herokuapp.com
         - renders the page that leads the user to one page or another.
+
     - https://morning-fortress-64023.herokuapp.com/auth/login
         - get: brings the user to the ejs page to login.
         - post: logs the user in.
