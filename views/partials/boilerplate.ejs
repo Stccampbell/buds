@@ -17,14 +17,16 @@
                 <h1>Buds</h1>
             </div>
             <div class="searchSection">
-                <form action="/action_page.php">
-                    <input type="text" placeholder="Search.." class="search">
-                    <button class="searchButton" type="submit"><i class="fa fa-search"></i></button>
+
+                <form method="POST" action="/plants">
+                    <input name="name" type="text" placeholder="Add a plant!" class="search">
+                    <button class="searchButton" type="submit">Submit</i></button>
+                    <!-- <button class="searchButton" type="submit"><i class="fa fa-search"></i></button> -->
                   </form>
+
             </div>
             <div class="plantAdd">
-                <a class="nav" href="/plants">Home</a>
-                <a class="nav" href="/plants/add">Add a plant</a>
-                <a class="nav" href="/auth/logout">Logout</a>
+                <a class="nav redirect" href="/plants">Home</a>
+                <a class="nav redirect" href="/auth/logout">Logout</a>
             </div>
         </header>

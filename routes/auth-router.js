@@ -11,14 +11,14 @@ authRouter.get('/login', authHelpers.loginRedirect, (req, res) => {
 authRouter.post('/login',
     passport.authenticate('local', {
         successRedirect: '/plants',
-        faliureRedirect: 'auth/login',
+        faliureRedirect: '/login',
         faliureFlash: true,
     })
 );
 
 authRouter.get('/logout', (req, res) => {
     req.logOut();
-    res.redirect('auth/login'); //need to find back
+    res.redirect('/login'); //need to find back
 });
 
 module.exports = authRouter

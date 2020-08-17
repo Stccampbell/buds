@@ -24,17 +24,17 @@ const userPlantsController = {
             .catch(next);
     },
 
-    // create(req, res, next){  //why no next here? maybe because it redirects upon completion
-    //     new UserPlants({
-    //         apiReference = req.body.apiReference,
-    //         plantName = req.body.name
-    //     })
-    //     .save()
-    //     // .then(() => {
-    //     //     res.redirect(`/something`)
-    //     // }) No redirect page set up
-    //     .catch(next);
-    // },
+    create(req, res, next){ 
+        new UserPlants({
+            plantName: req.body.name,
+            userId: req.user.id,
+        })
+        .save(req.body.name, req.user.id,)
+        .then(() => {
+            res.redirect(`/plants`)
+        })
+        .catch(next);
+    },
 
     update(req, res, next){
         UserPlants.getById(req.params.id)
@@ -57,26 +57,6 @@ const userPlantsController = {
             })
             .catch(next);
     },
-
-    //tracker
-
-    // indexTracker(req, res, next) {
-    //     UserPlants.getById(req.user.id)
-    //         .then((userPlant) =>{
-    //             userPlant.getWeekly()
-    //         })
-    //         .then((week) => {
-    //             // res.render('plants/index', {
-    //             //     message: 'ok',
-    //             //     data: { plants },
-    //             // });
-
-    //             res.locals.week = { week };
-    //             next();
-    //         })
-    //         .catch(next)
-    // },
-    
 }
 
 module.exports = userPlantsController

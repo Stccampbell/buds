@@ -1,18 +1,15 @@
-<%- include ('./partials/boilerplate') %>
+<%- include ('./partials/boilerplateUser') %>
 
-    <div class='singlePlantContainer'>
-        <div class="singlePlantPhotoContainer">
-            <img class="singlePlantPhoto" src="/assets/budslogo.png">
-        </div>  
-        <h2 class="singlePlantName"><%= appName %></h2>
-        <h3 class="lastWatered">Last Watered</h3>
-        <h4 class="day">Yesterday</h4>
-        <p class="singlePlantInfo">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-            Odit rem asperiores vero neque, sit corrupti beatae magnam. 
-            Reiciendis saepe ducimus fugit dicta rerum necessitatibus,
-            rem autem earum dolorem perspiciatis cupiditate?
-        </p>
-    </div>
+<div class='authContainer'>
+
+    <div class="logoContainer">
+        <img class="logo" src="/assets/budslogo.png">
+      </div>
+      <br/>
+      <h1>Welcome to Buds!</h1>
+      <h2>The plant tracking app</h2>
+      <a class="redirect" href="/auth/login">Login</a>
+      <a class="redirect" href="/user/new">Register</a>
+
 
 <%- include ('./partials/end') %>

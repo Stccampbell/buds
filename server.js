@@ -11,6 +11,7 @@ const authHelpers = require('./services/auth/auth-helpers.js');
 const userRouter = require('./routes/user-router');
 const authRouter = require('./routes/auth-router');
 const userPlantsRouter = require('./routes/user-plants-router');
+// const trefleRouter = require('./routes/trefle-router');
 
 const app = express();
 require('dotenv').config();
@@ -37,9 +38,14 @@ app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 });
 
-// app.get('/auth', (req, res) => {
-//     res.json('hello')
-// });
+// const trefleHelper = require('./services/trefle-helper')
+
+// app.get('/', plantsTrefle, (req, res) => {
+//     res.render('index', {
+//         treflePlants: res.locals.treflePlants,
+//         appName:'Buds',
+//     })
+// })
 
 app.get('/', (req, res) => {
     res.render('index', {
@@ -47,6 +53,7 @@ app.get('/', (req, res) => {
     })
 })
 
+// app.use('/plantSearch', trefleRouter);
 app.use('/plants', authHelpers.loginRequired, userPlantsRouter);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);

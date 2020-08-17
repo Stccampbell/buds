@@ -42,15 +42,15 @@ class UserPlants {
         });
     }
 
-    save() {
+    save(name, user) {
         return db
             .one(`
             INSERT INTO user_plants 
-            (api_reference, plant_name, user_id)
+            (plant_name, user_id)
             VALUES
-            ($/apiReference/, $/plantName/, $/userId/)
+            ($1, $2)
             RETURNING *
-            `, this)
+            `, [name, user])
             .then((plant) => {
                 return Object.assign(this, plant)
             });
@@ -63,7 +63,7 @@ class UserPlants {
             UPDATE user_plants SET
             api_reference = $/apiReference/,
             plant_name = $/plantName/,
-            user_id = $/user_id/
+            user_id = $/userId/
             WHERE id = $/id/
             RETURNING *
             `, this)

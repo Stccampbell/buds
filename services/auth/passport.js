@@ -10,8 +10,8 @@ passport.deserializeUser((username, done) => {
     console.log('deserialize')
     User.findByUserName(username)
         .then((user) => {
-            console.log(user); //might need to remove the console logs here
-            console.log(done);
+            // console.log(user); //might need to remove the console logs here
+            // console.log(done);
             return done(null, user);
         })
         .catch((err) => {

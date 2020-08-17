@@ -1,20 +1,40 @@
-<%- include ('../partials/boilerplate') %>
+<%- include ('../partials/boilerplatePlant') %>
+<header>
+    <div class="logoBox">
+        <div class="logoContainerHeader">
+            <img class="logoHeader" src="/assets/budslogo.png">
+        </div>
+        <h1>Buds</h1>
+    </div>
+    <div class="searchSection">
+
+        <form method="POST" action="/plants/<%= plant.id %>?_method=PUT">
+            <input name="plantName" type="text" placeholder="Update this Plants Name" class="search">
+            <button class="searchButton" type="submit">Submit</i></button>
+            <!-- <button class="searchButton" type="submit"><i class="fa fa-search"></i></button> -->
+          </form>
+
+    </div>
+    <div class="plantAdd">
+        <a class="nav redirect" href="/plants">Home</a>
+        <a class="nav redirect" href="/auth/logout">Logout</a>
+    </div>
+</header>
 
     <div class='singlePlantContainer'>
         <div class="singlePlantPhotoContainer">
             <img class="singlePlantPhoto" src="/assets/budslogo.png">
         </div>  
         <h2 class="singlePlantName"><%= plant.plantName %></h2>
+
+        <form method="POST" action="/plants/<%= plant.id %>?_method=DELETE">
+            <input type="submit" value="Remove this plant">
+        </form>
+
         <% if (lastWatered.dayWatered) { %>
             <h3 class="lastWatered">Last Watered</h3>
             <h4 class="day"><%= lastWatered.dayWatered %></h4>
         <% } %>
-        <p class="singlePlantInfo">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-            Odit rem asperiores vero neque, sit corrupti beatae magnam. 
-            Reiciendis saepe ducimus fugit dicta rerum necessitatibus,
-            rem autem earum dolorem perspiciatis cupiditate?
-        </p>
 
         <h3 class="lastWatered">Have You watered this plant today?</h3>
         <form method='POST' action='/plants/<%= plant.id %>'>
