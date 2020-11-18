@@ -13,6 +13,57 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    fetch('', {credentials: 'include' })
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        auth: res.auth,
+        user: res.data.user,
+      })
+    }).catch(err => console.log(err));
+  }
+
+  handleLoginSubmit = (e, data) => {
+    e.preventDefault();
+    fetch('', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+      this.setState({
+        auth: res.auth,
+        user: res.data.user
+      })
+    }).catch(err => console.log(err));
+  }
+
+  handleRegisterSubmit = (e, data) => {
+    e.preventDefault();
+    fetch('', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+      this.setState({
+        auth: res.auth,
+        user: res.data.user
+      })
+    }).catch(err => console.log(err))
+  }
+
   render() {
     return (
       <Router>
@@ -27,13 +78,13 @@ class App extends Component {
           <Route exact path='/Login' render={() => (
             this.state.auth
             ? <Redirect to='/' />
-            : <Login />
+            : <Login handleLoginSubmit={this.handleLoginSubmit} />
           )} />
 
           <Route exact path='/Register' render={() => (
             this.state.auth
             ? <Redirect to='/' />
-            : <Register />
+            : <Register handleRegisterSubmit={this.handleRegisterSubmit} />
           )} />
 
         </div>
