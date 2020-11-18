@@ -9,8 +9,13 @@ class User {
     }
 
     static findByUserName(username) {
-        return db
-            .oneOrNone('SELECT * FROM users WHERE username = $1', username)
+        return db.oneOrNone(`
+        SELECT * FROM users WHERE username = $1
+        `, username)
+        .then(user => {
+            if(user) return new this(user);
+            throw new Error(`No user with username ${username} found`);
+        })
     }
 
     save() {
@@ -22,7 +27,7 @@ class User {
             ($/username/, $/email/, $/password_digest/)
             RETURNING *
             `, this)
-            .then((savedUser) => Object.assign(this, savedUser));
+            .then(user => Object.assign(this, user));
     }
 }
 
