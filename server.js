@@ -11,11 +11,7 @@ const passport = require('passport');
 const authHelpers = require('./services/auth/auth-helpers.js'); //my auth helper to determine if logged in
 
 
-const userRouter = require('./routes/user-router');
-const authRouter = require('./routes/auth-router');
-const userPlantsRouter = require('./routes/user-plants-router');
-// const trefleRouter = require('./routes/trefle-router');
-//^^^ my routers being called
+
 
 const app = express();
 require('dotenv').config();
@@ -40,30 +36,40 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 //^^^ telling my app where to find my ejs views and public files and how to use them
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 });
 //^^^ telling the app to listen on port ||3000
 
 app.get('/', (req, res) => {
-    res.render('index')
-})
+    res.send('Hello World!');
+});
 //^^^ my main page titl
 
 
-app.use('/plants', authHelpers.loginRequired, userPlantsRouter);
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
+const userRouter = require('./routes/user-router');
+const authRouter = require('./routes/auth-router');
+const userPlantsRouter = require('./routes/user-plants-router');
+// const trefleRouter = require('./routes/trefle-router');
+//^^^ my routers being called
+
+app.use('/api/plants', authHelpers.loginRequired, userPlantsRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 //^^^telling the app to user the routers for these http routes
 
 app.use('*', (req, res) => {
-    res.status(404).send({
-        error: 'Not Found',
+    res.status(400).json({
+        message: 'Not Found!',
     });
 });
 //^^^ my error code
 
 app.use((err, req, res, next) => {
-    res.status(500).send({ err, message: err.message });
+    console.log(err);
+    res.status(500).json({ 
+        error: err, 
+        message: err.message 
+    });
 });
