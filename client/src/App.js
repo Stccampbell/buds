@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import './App.css';
 
-import './components/Login';
-import './components/Register';
+import Login from './components/Login';
+import Register from './components/Register';
 
 class App extends Component {
   constructor(){
@@ -18,6 +18,24 @@ class App extends Component {
       <Router>
         <div className='App'>
           {/* <Header/> */}
+
+          
+          <Route exact path ='/' render={() => {
+
+          }} />
+
+          <Route exact path='/Login' render={() => (
+            this.state.auth
+            ? <Redirect to='/' />
+            : <Login />
+          )} />
+
+          <Route exact path='/Register' render={() => (
+            this.state.auth
+            ? <Redirect to='/' />
+            : <Register />
+          )} />
+
         </div>
       </Router>
     )
