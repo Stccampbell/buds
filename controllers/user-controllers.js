@@ -20,14 +20,19 @@ const usersController = {
             email: req.body.email,
             password_digest: hash,
         })
-            .save()
-            .then((user) => {
-                req.login(user, (err) => {
-                    if(err) return next(err);
-                res.redirect('/plants');
-                });
-            })
-            .catch(next);
+        .save()
+        .then(user => {
+            req.login(user, (err) => {
+                if(err) return next(err);
+                res.status(201).json({
+                    message: 'user successfully created',
+                    auth: true,
+                    data: {
+                        user,
+                    }
+                })
+            });
+        }).catch(next);
     }
 }
 
