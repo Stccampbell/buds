@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 //^^^ my main page titl
 
 
-const userRouter = require('./routes/user-router');
+// const userRouter = require('./routes/user-router');
 const authRouter = require('./routes/auth-router');
 const userPlantsRouter = require('./routes/user-plants-router');
 // const trefleRouter = require('./routes/trefle-router');
@@ -56,7 +56,7 @@ const userPlantsRouter = require('./routes/user-plants-router');
 
 app.use('/api/plants', authHelpers.loginRequired, userPlantsRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/user', userRouter);
+// app.use('/api/user', userRouter);
 //^^^telling the app to user the routers for these http routes
 
 app.use('*', (req, res) => {

@@ -12,7 +12,7 @@ const usersController = {
         });
     },
 
-    show = (req, res, next) => {
+    show(req, res, next) {
         User.getById(req.params.id)
           .then((User) => {
             res.json({
@@ -23,7 +23,7 @@ const usersController = {
           .catch(next);
       },
 //creates user profile is being used
-    create(req,res,next) {
+    create(req, res, next) {
         const salt = bcrypt.genSaltSync();
         const hash = bcrypt.hashSync(req.body.password, salt);
         new User({ 

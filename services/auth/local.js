@@ -1,7 +1,7 @@
-const passport = require('./passport');
+const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const init = require('.passport');
+const init = require('./passport');
 const User = require('../../models/User');
 const authHelpers = require('./auth-helpers');
 
@@ -13,20 +13,16 @@ passport.use(
     new LocalStrategy(options, (username, password, done) => {
         User.findByUserName(username)
             .then(user => {
-                // console.log(user);
-                if(!user){
-                    return done(null, false)
+                if(!user) {
+                    return done(null, false);
                 }
                 if(!authHelpers.comparePass(password, user.password_digest)) {
-                    // console.log('unsuccessful test')
                     return done(null, false);
                 }
                 else {
-                    // console.log('successful check')
                     return done(null, user);
                 }
-            })
-            .catch((err) => {
+            }).catch(err => {
                 console.log(err);
                 return done(err);
             });
@@ -34,3 +30,4 @@ passport.use(
 );
 
 module.exports = passport;
+
