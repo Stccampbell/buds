@@ -1,26 +1,28 @@
 const passport = require('./passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+const init = require('.passport');
 const User = require('../../models/User');
 const authHelpers = require('./auth-helpers');
 
 const options = {};
 
+init();
+
 passport.use(
     new LocalStrategy(options, (username, password, done) => {
-        console.log('local strategy');
         User.findByUserName(username)
-            .then((user) => {
+            .then(user => {
                 // console.log(user);
                 if(!user){
                     return done(null, false)
                 }
                 if(!authHelpers.comparePass(password, user.password_digest)) {
-                    console.log('unsuccessful test')
+                    // console.log('unsuccessful test')
                     return done(null, false);
                 }
                 else {
-                    console.log('successful check')
+                    // console.log('successful check')
                     return done(null, user);
                 }
             })
