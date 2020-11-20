@@ -11,6 +11,17 @@ const usersController = {
             },
         });
     },
+
+    show = (req, res, next) => {
+        User.getById(req.params.id)
+          .then((User) => {
+            res.json({
+              message: 'ok',
+              data: { User },
+            });
+          })
+          .catch(next);
+      },
 //creates user profile is being used
     create(req,res,next) {
         const salt = bcrypt.genSaltSync();

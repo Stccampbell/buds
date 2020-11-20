@@ -1,25 +1,45 @@
 const authRouter = require('express').Router();
-
-const authHelpers = require('../services/auth/auth-helpers.js'); //helps log in
 const passport = require('../services/auth/local'); //helps determine user
+const authHelpers = require('../services/auth/auth-helpers'); //helps log in
+const userController = require('../controllers/user-controllers');
 
-//this redirects the user to the login page allowing them to login unless they are logged in
-authRouter.get('/login', authHelpers.loginRedirect, (req, res) => {
-    res.render('auth/login');
-});
-//if the user logs in successfully they go to /plants
-//if fail they go to /auth/login
-authRouter.post('/login',
-    passport.authenticate('local', {
-        successRedirect: '/plants',
-        faliureRedirect: '/login',
-        faliureFlash: true,
+authRouter.post('/register', userController.create);
+
+authRouter.post('/login', passport.authenticate('local', {
+    successRedirect: '/api/auth/verify',
+    faliureRedirect: '/api/auth/verify',
+    faliureFlash: true,
     })
 );
-//this logs the user out and sends them to login
-authRouter.get('/logout', (req, res) => {
-    req.logOut();
-    res.redirect('/login'); //need to find back
+
+authRouter.get('verify', (req, res) => {
+    if(req.user) return res.status(200).json({
+        message: 'ok',
+        auth: true,
+        data: {
+            user: req.user,
+        }
+    });
+    else return res.status(400).json({
+        message: 'Login failed',
+        auth: false,
+        data: {
+            user: null,
+        }
+    });
 });
+
+authRouter.get('/logout', (req, res) => {
+    req/logOut();
+    res.json({
+        message: 'logged out',
+        auth: false,
+        data: {
+            user: null,
+        }
+    })
+});
+
+authRouter.get('/userGet/:id', userController.show);
 
 module.exports = authRouter

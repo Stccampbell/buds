@@ -18,6 +18,15 @@ class User {
         })
     }
 
+    static getById(id) {
+        return db
+          .oneOrNone('SELECT * FROM users WHERE id = $1', [id])
+          .then((user) => {
+            if (user) return new this(user);
+            throw new Error(`User ${id} not found`);
+          });
+      }
+
     save() {
         return db
             .one(`
