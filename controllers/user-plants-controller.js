@@ -25,6 +25,8 @@ const userPlantsController = {
             .catch(next);
     },
 
+    //need to fix from here down
+
     //adds a plant to the data base
     create(req, res, next){ 
         new UserPlants({

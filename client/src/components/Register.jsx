@@ -34,7 +34,7 @@ class Register extends Component {
                     <input
                     type='text'
                     name='username'
-                    value={this.state.email}
+                    value={this.state.username}
                     placeholder='Username'
                     onChange={this.handleChange}
                     />
@@ -42,8 +42,8 @@ class Register extends Component {
                     <input
                     type='password'
                     name='password'
-                    value={this.state.email}
-                    placeholder='Username'
+                    value={this.state.password}
+                    placeholder='Password'
                     onChange={this.handleChange}
                     />
                     

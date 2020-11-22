@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('', {credentials: 'include' })
+    fetch('/api/auth/verify', { credentials: 'include' })
     .then(res => res.json())
     .then(res => {
       this.setState({
@@ -26,7 +26,7 @@ class App extends Component {
 
   handleLoginSubmit = (e, data) => {
     e.preventDefault();
-    fetch('', {
+    fetch('/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ class App extends Component {
 
   handleRegisterSubmit = (e, data) => {
     e.preventDefault();
-    fetch('', {
+    fetch('/api/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,9 +57,23 @@ class App extends Component {
     .then(res => res.json())
     .then(res => {
       console.log(res);
+      console.log(this.state.auth)
       this.setState({
         auth: res.auth,
         user: res.data.user
+      })
+    }).catch(err => console.log(err))
+  }
+
+  logout = () => {
+    fetch('/api/auth/logout', {
+      credentials: 'include',
+    })
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        auth: res.auth,
+        user: res.data.user,
       })
     }).catch(err => console.log(err))
   }
