@@ -5,12 +5,10 @@ const userPlantsController = {
     index(req, res, next) {
         UserPlants.getAll(req.user.id)
             .then((plants) => {
-                // res.render('plants/index', {
-                //     message: 'ok',
-                //     data: { plants },
-                // });
-                res.locals.plants = { plants };
-                next();
+                res.json({
+                    message: 'ok',
+                    data: { plants },
+                })
             })
             .catch(next)
     },
@@ -19,8 +17,10 @@ const userPlantsController = {
     show(req, res, next) {
         UserPlants.getById(req.params.id)
             .then((plant) => {
-                res.locals.plant = plant;
-                next();
+                res.json({
+                    message: 'ok',
+                    data: { plant },
+                })
             })
             .catch(next);
     },
