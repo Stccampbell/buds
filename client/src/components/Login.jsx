@@ -22,7 +22,7 @@ class Login extends Component {
     render(){
         return(
             <>
-                <form className="loginForm" onSumbit={(e) => this.props.handleLoginSubmit(e, this.state)}>
+                <form className="loginForm" onSubmit={(e) => this.props.handleLoginSubmit(e, this.state)}>
                     <input
                     type='text'
                     name='username'

@@ -4,6 +4,8 @@ import './App.css';
 
 import Login from './components/Login';
 import Register from './components/Register';
+import Header from './components/Header';
+import Dashboard from './components/Dashboard';
 
 class App extends Component {
   constructor(){
@@ -82,12 +84,15 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          {/* <Header/> */}
+          <Header logout={this.logout}/>
 
           
-          <Route exact path ='/' render={() => {
+          <Route exact path ='/' render={() => (
+            !this.state.auth
+            ? <Redirect to='/Login' />
+            : <Dashboard />
 
-          }} />
+          )} />
 
           <Route exact path='/Login' render={() => (
             this.state.auth

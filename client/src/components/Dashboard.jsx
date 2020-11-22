@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 
 class Dashboard extends Component {
-    compoenent(){
-        super();
-        // this.state = {
-        // }
-    }
+    // constructor(){
+    //     super();
+    //     // this.state = {
+    //     // }
+    // }
 
     render(){
         return(
             <>
+            <p>Hello World!</p>
             </>
         )
     }

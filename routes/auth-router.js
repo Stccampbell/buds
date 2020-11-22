@@ -30,7 +30,7 @@ authRouter.get('/verify', (req, res) => {
 });
 
 authRouter.get('/logout', (req, res) => {
-    req/logOut();
+    req.logOut();
     res.json({
         message: 'logged out',
         auth: false,
